@@ -1,3 +1,24 @@
+# Greetings
+Hello! This is my project for the end of phase 2;
+
+# Stremie
+
+
+Stremie is a small application used for anyone to access their entertainment needs. The company wanted to make this application for the public to watch and binge on their desirable shows and/or movie anywhere at anytime on any device.
+
+# Description:
+
+
+The application uses the TMBD API to fetch in the shows/movies needed by the general public. With a simplistic user friendly interface, Stremie strives to make it easy for anyone to access readily available shows/movies with ease.
+
+Code languages used:
+>JavaScript
+>HTML
+>CSS
+>React
+
+Author: 
+Raymond Ong'ang'a
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
