@@ -21,7 +21,7 @@ const Row = ({ title, fetchURL, rowID }) => {
 //scrollbar slide animation towards the right side/////////////////////////////
   const slideRight = () => {
     let slider = document.getElementById('slider' + rowID);
-    slider.scrollLeft = slider.scrollRight + 500;
+    slider.scrollLeft = slider.scrollLeft + 500;
   };
 //returning the data from the api with the styling of the scrollbar////////////////////////////////
   return (
