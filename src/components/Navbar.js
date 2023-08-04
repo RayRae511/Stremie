@@ -39,7 +39,7 @@ const Navbar = () => {
       ) : (
         <div>
           <Link to='/login'>
-            <button className='text-orange-600 pr-4 hover:text-orange-600'>Sign In</button>
+            <button className='text-orange-600 pr-4 hover:text-white'>Sign In</button>
           </Link>
           <Link to='/signup'>
             <button className='bg-orange-600 px-6 py-2 rounded cursor-pointer text-black hover:bg-black hover:text-orange-600'>
