@@ -13,7 +13,8 @@ const Main = () => {
     })
    },[])
 //console.log(movie)
-
+ 
+   //shortens the description of the movie
    const truncateString = (str, num) => {
     if(str?.length > num){
         return str.slice(0, num) + "..."

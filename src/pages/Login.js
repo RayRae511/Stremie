@@ -1,70 +1,77 @@
-import React, {useState} from 'react'
-import { Link, useNavigate} from 'react-router-dom'
-import { UserAuth } from '../context/AuthContext'
+//The log in page
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../backend/AuthContext';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('')
+  const { user, logIn } = UserAuth();
+  const navigate = useNavigate();
+//backend stuff...idk dude =/
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const {user, logIn} = UserAuth()
-    const navigate = useNavigate()
-    const [error, setError] = useState('')
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault()
-      try{
-        await logIn(email, password)
-        navigate('/')
-      }catch (error){
-        console.log(error)
-        setError(error.message)
-      }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('')
+    try {
+      await logIn(email, password)
+      navigate('/')
+    } catch (error) {
+      console.log(error);
+      setError(error.message)
     }
+  };
+
   return (
-    <div>
-      <div className='w-full h-screen'>
-        <img 
-          className='hidden sm:block absolute w-full h-full object-cover'
-          src='https://assets.nflxext.com/ffe/siteui/vlv3/b85863b0-0609-4dba-8fe8-d0370b25b9ee/32efd2dd-513d-4a27-ac5d-0fe38c6d57a4/KE-en-20230731-popsignuptwoweeks-perspective_alpha_website_large.jpg'
-        />
-        <div className='bg-black/60 fixed top-0 w-full h-screen'></div>
-        <div className='fixed w-full px-4 py-24 z-50'>
-          <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-orange-400'>
-            <div className='max-w-[320px] mx-auto py-16'>
-              <h1 className='text-3xl font-bold'>Log in</h1>
-              {error ? <p className='p-3 bg-red-700 my-2'>{error}</p> : null}
-              <form 
-              onSubmit={handleSubmit}
-              className='w-full flex flex-col py-4'>
-                <input 
-                onChange={(e)=> setEmail(e.target.value)}
-                className='p-3 my-2 bg-gray-300 rounded' 
-                type='email' 
-                placeholder='Email' 
+    <div className='w-full h-screen'>
+      <img
+        className='hidden sm:block absolute w-full h-full object-cover'
+        //sm: => 'small >= 576px' md: => 'medium >= 768px' lg: => 'large >= 1024px' xl 'xtra large >= 1280px'
+        src='https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bcae-07a3f8dc141a/f6d7434e-d6de-4185-a6d4-c77a2d08737b/US-en-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg'
+        alt='/'
+      />
+      <div className='bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
+      <div className='fixed w-full px-4 py-24 z-50'>
+        <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-black'>
+          <div className='max-w-[320px] mx-auto py-16'>
+            <h1 className='text-3xl font-bold text-orange-600'>Sign In</h1>
+            {error ? <p className='p-3 bg-orange-500 my-2'>{error}</p> : null}
+            <form onSubmit={handleSubmit} className='w-full flex flex-col py-4'>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                className='p-3 my-2 bg-orange-700 rounded'
+                type='email'
+                placeholder='Email'
                 autoComplete='email'
-                />
-                <input 
-                onChange={(e)=> setPassword(e.target.value)}
-                className='p-3 my-2 bg-gray-300 rounded' 
+              />
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                className='p-3 my-2 bg-orange-700 rounded'
                 type='password'
-                placeholder='Password' 
+                placeholder='Password'
                 autoComplete='current-password'
-                />
-                <button className='bg-black py-3 my-6 rounded font-bold hover:bg-orange-400 hover:text-black'>Log in</button>
-                <div className='flex justify-between items-center text-sm text-orange-400'>
-                  <p className='cursor-pointer'><input className='mr-2 cursor-pointer' type='checkbox'></input>Remember Me</p>
-                  <p><a href='https://www.netflix.com/ke/LoginHelp'>Need help?</a></p>
-                </div>
-                <p className='py-8'><span>New to Stremie?</span>{' '}
-                <Link to='/signup'>Sign up</Link>
+              />
+              <button className='bg-orange-600 py-3 my-6 rounded font-bold hover:bg-black hover:text-orange-600'>
+                Sign In
+              </button>
+              <div className='flex justify-between items-center text-sm text-orange-700 cursor-pointer'>
+                <p>
+                  <input className='mr-2 cursor-pointer' type='checkbox' />
+                  Remember me
                 </p>
-              </form>
-            </div>
+                <a href='https://help.netflix.com/en' className='cursor-pointer text-gray-500 hover:text-orange-700'><p>Need Help?</p></a>
+              </div>
+              <p className='py-8'>
+                <span className='text-gray-300'>New to Stremie?</span>{' '}
+                <Link to='/signup' className='hover:text-orange-600 text-white'>Sign Up</Link>
+              </p>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
